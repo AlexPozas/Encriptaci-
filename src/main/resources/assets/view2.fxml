@@ -1,93 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #00552F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.Controller2">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.Controller2">
    <children>
-      <HBox maxHeight="100.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+      <Pane prefHeight="400.0" prefWidth="600.0">
          <children>
-            <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <Button fx:id="button01" mnemonicParsing="false" onAction="#toView0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: white;" text="View0">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button fx:id="button0" mnemonicParsing="false" onAction="#animateToView0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: white;" text="View0 anim">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-               </children>
-            </VBox>
-            <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <Button fx:id="button11" mnemonicParsing="false" onAction="#toView1" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: white;" text="View1">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button fx:id="button1" mnemonicParsing="false" onAction="#animateToView1" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: white;" text="View1 anim">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-               </children>
-            </VBox>
-            <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <Button fx:id="button21" disable="true" mnemonicParsing="false" onAction="#toView2" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: white;" text="View2" VBox.vgrow="ALWAYS">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button fx:id="button2" disable="true" mnemonicParsing="false" onAction="#animateToView2" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: white;" text="View2 anim" VBox.vgrow="ALWAYS">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-               </children>
-            </VBox>
+            <Button fx:id="desencript" layoutX="213.0" layoutY="272.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="175.0" text="Desencriptar" AnchorPane.leftAnchor="213.0" AnchorPane.rightAnchor="212.0" AnchorPane.topAnchor="272.0" />
+            <Label layoutX="211.0" layoutY="125.0" text="Arxiu:" />
+            <TextField fx:id="arxiu" layoutX="262.0" layoutY="123.0" />
+            <Label layoutX="174.0" layoutY="160.0" text="Clau privada:" />
+            <TextField fx:id="cprivada" layoutX="262.0" layoutY="158.0" />
+            <Label layoutX="173.0" layoutY="193.0" text="Contrasenya:" />
+            <TextField fx:id="contrasenya" layoutX="262.0" layoutY="191.0" />
+            <Label layoutX="212.0" layoutY="226.0" text="Destí:" />
+            <TextField fx:id="desti" layoutX="263.0" layoutY="224.0" />
          </children>
-      </HBox>
-      <Text fill="WHITE" layoutX="41.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View 2" wrappingWidth="258.13671875" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="65.0">
-         <font>
-            <Font name="Lato Black" size="55.0" />
-         </font>
-      </Text>
-      <ChoiceBox fx:id="choiceBox" layoutX="370.0" layoutY="99.0" prefWidth="180.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="100.0" />
-      <Button fx:id="buttonWeekdays" layoutX="370.0" layoutY="67.0" mnemonicParsing="false" onAction="#setWeekdays" prefHeight="25.0" prefWidth="100.0" text="Weekdays" AnchorPane.rightAnchor="380.0" AnchorPane.topAnchor="65.0" />
-      <Button fx:id="buttonMonths" layoutX="461.0" layoutY="67.0" mnemonicParsing="false" onAction="#setMonths" prefHeight="25.0" prefWidth="70.0" text="Months" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="65.0" />
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="538.0" layoutY="99.0" prefHeight="200.0" prefWidth="234.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="100.0">
-         <content>
-            <VBox fx:id="yPane" />
-         </content>
-      </ScrollPane>
-      <Button fx:id="buttonAnimals" layoutX="538.0" layoutY="67.0" mnemonicParsing="false" onAction="#setAnimals" prefHeight="26.0" prefWidth="70.0" text="Animals" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="65.0" />
-      <Button fx:id="buttonBrands" layoutX="622.0" layoutY="67.0" mnemonicParsing="false" onAction="#setBrands" prefHeight="26.0" prefWidth="70.0" text="Brands" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="65.0" />
-      <Button fx:id="buttonFXML" layoutX="706.0" layoutY="67.0" mnemonicParsing="false" onAction="#setFXML" prefHeight="26.0" prefWidth="70.0" text="FXML" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="65.0" />
-      <Label fx:id="choiceLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="320.0" layoutY="141.0" prefHeight="17.0" prefWidth="180.0" text="ABC" textFill="WHITE" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="150.0">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
+      </Pane>
+      <Pane prefHeight="58.0" prefWidth="600.0" style="-fx-border-width: 2px; -fx-border-color: #595959;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="70.0" layoutY="21.0" text="Eina d'encriptació">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="returnb" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="45.0" text="&lt;-" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

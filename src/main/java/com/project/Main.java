@@ -7,6 +7,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    public static boolean result = false;
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -14,8 +16,8 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        final int windowWidth = 800;
-        final int windowHeight = 600;
+        final int windowWidth = 600;
+        final int windowHeight = 400;
 
         UtilsViews.parentContainer.setStyle("-fx-font: 14 arial;");
         UtilsViews.addView(getClass(), "View0", "/assets/view0.fxml");
@@ -25,7 +27,8 @@ public class Main extends Application {
         Scene scene = new Scene(UtilsViews.parentContainer);
         
         stage.setScene(scene);
-        stage.setTitle("Animació entre vistes");
+        stage.setTitle("Encriptator 3000");
+        stage.setResizable(false);
         stage.setMinWidth(windowWidth);
         stage.setMinHeight(windowHeight);
         stage.show();

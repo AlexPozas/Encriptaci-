@@ -1,44 +1,31 @@
 package com.project;
 
-import javafx.event.ActionEvent;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 
-public class Controller0 {
-
+public class Controller0 implements Initializable{
     @FXML
-    private Button button0, button1, button2;
-    @FXML
-    private AnchorPane container;
+    public Button encriptar;
 
     @FXML
-    private void toView0(ActionEvent event) {
-        UtilsViews.setView("View0");
+    public Button desencriptar;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        encriptar.setOnAction(event -> {
+            UtilsViews.setViewAnimating("View1");
+        });
+
+        desencriptar.setOnAction(event -> {
+            UtilsViews.setViewAnimating("View2");
+        });
     }
+
     
-    @FXML
-    private void toView1(ActionEvent event) {
-        UtilsViews.setView("View1");
-    }
 
-    @FXML
-    private void toView2(ActionEvent event) {
-        UtilsViews.setView("View2");
-    }
-
-    @FXML
-    private void animateToView0(ActionEvent event) {
-        UtilsViews.setViewAnimating("View0");
-    }
-    
-    @FXML
-    private void animateToView1(ActionEvent event) {
-        UtilsViews.setViewAnimating("View1");
-    }
-
-    @FXML
-    private void animateToView2(ActionEvent event) {
-        UtilsViews.setViewAnimating("View2");
-    }
 }

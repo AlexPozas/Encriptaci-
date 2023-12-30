@@ -27,7 +27,7 @@
         <dependency>
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
-            <version>3.39.3.0</version>
+            <version>3.41.2.2 </version>
         </dependency>
         <!-- Dependency for JavaFX -->
         <dependency>
@@ -50,7 +50,7 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20220924</version> <!-- This seems to be a future date, please ensure it's the correct version -->
+            <version>20231013 </version> <!-- This seems to be a future date, please ensure it's the correct version -->
         </dependency>
         <!-- Dependencies for SLF4J -->
         <dependency>
@@ -63,6 +63,17 @@
             <artifactId>slf4j-simple</artifactId>
             <version>2.0.3</version>
         </dependency>
+        <!-- GPG -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcpg-jdk15on</artifactId>
+            <version>1.69</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>1.69</version>
+        </dependency>
     </dependencies>
     <profiles>
         <profile>
@@ -74,7 +85,7 @@
                         <artifactId>exec-maven-plugin</artifactId>
                         <version>1.6.0</version>
                         <configuration>
-                            <mainClass>${exec.mainClass}</mainClass>
+                            <mainClass>com.project.Main</mainClass>
                         </configuration>
                     </plugin>
                 </plugins>

@@ -1,181 +1,132 @@
 package com.project;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.net.URL;
-import java.util.ArrayList;
+import java.security.Key;
 import java.util.ResourceBundle;
 
-import javafx.event.ActionEvent;
+import javax.crypto.Cipher;
+
+
+
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 
-public class Controller2 implements Initializable {
+
+
+import javax.crypto.CipherInputStream;
+import javax.crypto.KeyGenerator;
+
+public class Controller2 implements Initializable{
 
     @FXML
-    private Button button0, button1, button2, buttonWeekdays, buttonMonths, buttonAnimals, buttonBrands, buttonFXML;
-    @FXML
-    private Label choiceLabel;
-    @FXML
-    private AnchorPane container;
-    @FXML
-    private ChoiceBox<String> choiceBox;
-    @FXML
-    private VBox yPane = new VBox();
+    public Button returnb;
 
-    String fruits[] = { "Apple", "Banana", "Cherry", "Grape", "Kiwi", "Lemon", "Lime", "Mango", "Orange", "Peach", "Pear", "Pineapple", "Plum", "Strawberry" };
-    String weekdays[] = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
-    String months[] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
-    String animals[] = { "Dog", "Cat", "Horse", "Cow", "Pig" };
-    String brands[] = { "Audi", "BMW", "Citroen", "Fiat", "Ford", "Honda", "Hyundai", "Kia", "Mazda", "Mercedes", "Nissan", "Opel", "Peugeot", "Renault", "Seat", "Skoda", "Suzuki", "Toyota", "Volkswagen", "Volvo" };
-    
-    // Called when the FXML file is loaded
+    @FXML
+    public Button desencript; 
+
+    @FXML
+    public TextField arxiu;
+
+    @FXML
+    public TextField cprivada;
+
+    @FXML 
+    public TextField contrasenya;
+
+    @FXML
+    public TextField desti;
+
+    File arxiuDesEncriptar;
+    File clauPrivada;
+
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
-        String value = "Apple";
-        choiceLabel.setText(value);
-
-        choiceBox.getItems().addAll(fruits);
-        choiceBox.setValue(value);
-        choiceBox.setOnAction((event) -> {
-            choiceLabel.setText(choiceBox.getSelectionModel().getSelectedItem());
+    public void initialize(URL location, ResourceBundle resources) {
+        
+        //Retornar al menu
+        returnb.setOnAction(event -> {
+            UtilsViews.setViewAnimating("View0");
+            Main.result = false;
         });
-    }
 
-    @FXML
-    private void toView0(ActionEvent event) {
-        UtilsViews.setView("View0");
-    }
-    
-    @FXML
-    private void toView1(ActionEvent event) {
-        UtilsViews.setView("View1");
-    }
+        FileChooser fc = new FileChooser();
 
-    @FXML
-    private void toView2(ActionEvent event) {
-        UtilsViews.setView("View2");
-    }
-
-    @FXML
-    private void animateToView0(ActionEvent event) {
-        UtilsViews.setViewAnimating("View0");
-    }
-    
-    @FXML
-    private void animateToView1(ActionEvent event) {
-        UtilsViews.setViewAnimating("View1");
-    }
-
-    @FXML
-    private void animateToView2(ActionEvent event) {
-        UtilsViews.setViewAnimating("View2");
-    }
-
-    @FXML
-    private void setWeekdays (ActionEvent event) {
-
-        String value = "Monday";
-
-        choiceBox.getItems().clear();
-        choiceBox.getItems().addAll(weekdays);
-        choiceBox.setValue(value);
-
-        choiceLabel.setText(value);
-    }
-
-    @FXML
-    private void setMonths (ActionEvent event) {
-
-        String value = "January";
-
-        choiceBox.getItems().clear();
-        choiceBox.getItems().addAll(months);
-        choiceBox.setValue(value);
-
-        choiceLabel.setText(value);
-    }
-
-    @FXML
-    private void setAnimals (ActionEvent event) {
-        ArrayList<String> list = new ArrayList<>();
-        for (String name: animals) {
-            list.add(name);
-        }
-        yPane.getChildren().clear();
-        for (String s : list) {
-            Label label = new Label(s);
-            label.setStyle("-fx-border-color: black;");
-            yPane.getChildren().add(label);
-        }
-    }
-
-    @FXML
-    private void setBrands (ActionEvent event) {
-        ArrayList<String> list = new ArrayList<>();
-        for (String name: brands) {
-            list.add(name);
-        }
-
-        yPane.getChildren().clear();
-        for (String s : list) {
-            Label label = new Label(s);
-            label.setStyle("-fx-border-color: black;");
-            yPane.getChildren().add(label);
-        }
-    }
-
-    @FXML
-    private void setFXML (ActionEvent event) throws Exception {
-     
-        // List of two strings with spices and animals
-        String[][] list = new String[][] { 
-            new String[] { "Mamals", "Dod", "black" }, 
-            new String[] { "Mamals", "Cat", "grey" },
-            new String[] { "Mamals", "Horse", "brown" },
-            new String[] { "Mamals", "Cow", "white" },
-            new String[] { "Mamals", "Pig", "pink" },
-            new String[] { "Birds", "Pidgeon", "grey" },
-            new String[] { "Birds", "Duck", "white" },
-            new String[] { "Birds", "Eagle", "brown" },
-            new String[] { "Birds", "Owl", "black" },
-            new String[] { "Birds", "Parrot", "green" },
-            new String[] { "Fish", "Goldfish", "orange" },
-            new String[] { "Fish", "Shark", "grey" },
-            new String[] { "Fish", "Tuna", "silver" },
-            new String[] { "Fish", "Salmon", "pink" },
-            new String[] { "Fish", "Cod", "white" },
-            new String[] { "Reptiles", "Snake", "black" },
-            new String[] { "Reptiles", "Lizard", "green" },
-            new String[] { "Reptiles", "Turtle", "brown" },
-            new String[] { "Reptiles", "Crocodile", "grey" },
-            new String[] { "Reptiles", "Alligator", "green" },
-            new String[] { "Amphibians", "Frog", "green" },
-            new String[] { "Amphibians", "Toad", "brown" },
-            new String[] { "Amphibians", "Salamander", "grey" },
-            new String[] { "Amphibians", "Newt", "brown" },
-            new String[] { "Amphibians", "Axolotl", "pink" }
-        };
-
-        URL resource = this.getClass().getResource("/assets/listItem.fxml");
-
-        yPane.getChildren().clear();
-        for (String[] listElement : list) {
-            FXMLLoader loader = new FXMLLoader(resource);
-            Parent itemTemplate = loader.load();
-            ControllerListItem itemController = loader.getController();
+        //Arxiu a desencriptar
+        arxiu.setOnMouseClicked(e -> {
             
-            itemController.setTitle(listElement[1]);
-            itemController.setSubtitle(listElement[0]);
-            itemController.setCircleColor(listElement[2]);
+            File selFile = fc.showOpenDialog(null);
 
-            yPane.getChildren().add(itemTemplate);
-        }
+            if (selFile != null) {
+                arxiu.setText(selFile.getName());
+                arxiuDesEncriptar = selFile;
+            } else {
+                arxiu.setText("");
+                arxiuDesEncriptar = null;
+            }
+            desti.requestFocus();
+        });
+
+        //ClauPrivada
+        cprivada.setOnMouseClicked(e ->{
+
+            File selFile = fc.showOpenDialog(null);
+
+            if (selFile != null) {
+                cprivada.setText(selFile.getName());
+                clauPrivada = selFile;
+            } else {
+                cprivada.setText("");
+                clauPrivada = null;
+            }
+            desti.requestFocus();
+        });
+
+        //Boton desencriptar
+        desencript.setOnMouseClicked(e -> {
+            if (arxiuDesEncriptar != null && clauPrivada != null) {
+                try {
+                    // Lógica de desencriptación
+                    KeyGenerator keyGen = KeyGenerator.getInstance("AES");
+                    keyGen.init(128);
+                    Key key = keyGen.generateKey();
+
+                    Cipher cipher = Cipher.getInstance("AES");
+                    cipher.init(Cipher.DECRYPT_MODE, key);
+
+                    FileInputStream inputStream = new FileInputStream(arxiuDesEncriptar);
+                    CipherInputStream cipherInputStream = new CipherInputStream(inputStream, cipher);
+
+                    // Nombre y ruta del archivo desencriptado
+                    String outputPath = System.getProperty("user.dir")+"/data/"+desti.getText();
+
+                    FileOutputStream outputStream = new FileOutputStream(outputPath);
+
+                    byte[] buffer = new byte[8192];
+                    int bytesRead;
+                    while ((bytesRead = cipherInputStream.read(buffer)) != -1) {
+                        outputStream.write(buffer, 0, bytesRead);
+                    }
+
+                    cipherInputStream.close();
+                    outputStream.close();
+
+                    System.out.println("Desencriptación exitosa. Archivo desencriptado guardado en: " + outputPath);
+                } catch (Exception r) {
+                    r.printStackTrace();
+                }
+            } else {
+                System.out.println("Por favor, seleccione el archivo y la clave privada para desencriptar.");
+            }
+            
+        });
+        
     }
+    
+    
+
 }
