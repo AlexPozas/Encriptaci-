@@ -3,14 +3,17 @@ package com.project;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.Key;
+import java.security.PrivateKey;
 import java.util.ResourceBundle;
 
 import javax.crypto.Cipher;
 
-
-
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -41,14 +44,16 @@ public class Controller2 implements Initializable{
 
     @FXML
     public TextField desti;
+    String con = "1234";
 
-    File arxiuDesEncriptar;
-    File clauPrivada;
+    String rutaArxiu;
+    String rutaClau;
+    String outDirectory;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
-        //Retornar al menu
+        //Retornar 
         returnb.setOnAction(event -> {
             UtilsViews.setViewAnimating("View0");
             Main.result = false;
@@ -62,11 +67,11 @@ public class Controller2 implements Initializable{
             File selFile = fc.showOpenDialog(null);
 
             if (selFile != null) {
-                arxiu.setText(selFile.getName());
-                arxiuDesEncriptar = selFile;
+               
+                rutaArxiu = selFile.getAbsolutePath();
             } else {
                 arxiu.setText("");
-                arxiuDesEncriptar = null;
+                
             }
             desti.requestFocus();
         });
@@ -77,56 +82,53 @@ public class Controller2 implements Initializable{
             File selFile = fc.showOpenDialog(null);
 
             if (selFile != null) {
-                cprivada.setText(selFile.getName());
-                clauPrivada = selFile;
+                
+                rutaClau = selFile.getAbsolutePath();
             } else {
                 cprivada.setText("");
-                clauPrivada = null;
+                
             }
             desti.requestFocus();
         });
 
         //Boton desencriptar
         desencript.setOnMouseClicked(e -> {
-            if (arxiuDesEncriptar != null && clauPrivada != null) {
-                try {
-                    // Lógica de desencriptación
-                    KeyGenerator keyGen = KeyGenerator.getInstance("AES");
-                    keyGen.init(128);
-                    Key key = keyGen.generateKey();
-
-                    Cipher cipher = Cipher.getInstance("AES");
-                    cipher.init(Cipher.DECRYPT_MODE, key);
-
-                    FileInputStream inputStream = new FileInputStream(arxiuDesEncriptar);
-                    CipherInputStream cipherInputStream = new CipherInputStream(inputStream, cipher);
-
-                    // Nombre y ruta del archivo desencriptado
-                    String outputPath = System.getProperty("user.dir")+"/data/"+desti.getText();
-
-                    FileOutputStream outputStream = new FileOutputStream(outputPath);
-
-                    byte[] buffer = new byte[8192];
-                    int bytesRead;
-                    while ((bytesRead = cipherInputStream.read(buffer)) != -1) {
-                        outputStream.write(buffer, 0, bytesRead);
-                    }
-
-                    cipherInputStream.close();
-                    outputStream.close();
-
-                    System.out.println("Desencriptación exitosa. Archivo desencriptado guardado en: " + outputPath);
-                } catch (Exception r) {
-                    r.printStackTrace();
-                }
-            } else {
-                System.out.println("Por favor, seleccione el archivo y la clave privada para desencriptar.");
-            }
-            
+            Decrypt();
         });
         
     }
-    
+    private void Decrypt(){
+        if(con.equals(contrasenya.getText())){
+            try {
+                outDirectory = System.getProperty("user.dir")+"/data/"+desti.getText();
+                PrivateKey privateKeyFile = loadPrivateKey(rutaClau);
+                byte[] encryptedData = Files.readAllBytes(Paths.get(rutaArxiu));
+                byte[] decryptedData = decryptData(encryptedData, privateKeyFile);
+                Files.write(Paths.get(outDirectory), decryptedData);
+                Main.result=true;
+                UtilsViews.addView(getClass(), "ViewR", "/assets/view3.fxml");
+                UtilsViews.setView("ViewR");
+
+                System.out.println("Dencriptacio exitosa. Archiu desencriptat guardat a: " + outDirectory);
+
+            } catch (Exception e) {
+                UtilsViews.setView("ViewR");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static PrivateKey loadPrivateKey(String filename) throws Exception {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
+            return (PrivateKey) ois.readObject();
+        }
+    }
+
+    public static byte[] decryptData(byte[] data, PrivateKey key) throws Exception {
+        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+        cipher.init(Cipher.DECRYPT_MODE, key);
+        return cipher.doFinal(data);
+    }
     
 
 }

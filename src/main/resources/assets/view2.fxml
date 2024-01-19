@@ -7,11 +7,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.Controller2">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.Controller2">
    <children>
       <Pane prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Button fx:id="desencript" layoutX="213.0" layoutY="272.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="175.0" text="Desencriptar" AnchorPane.leftAnchor="213.0" AnchorPane.rightAnchor="212.0" AnchorPane.topAnchor="272.0" />
+            <Button fx:id="desencript" layoutX="212.0" layoutY="279.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="177.0" text="Desencriptar" AnchorPane.leftAnchor="212.0" AnchorPane.rightAnchor="211.0" AnchorPane.topAnchor="279.0">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
             <Label layoutX="211.0" layoutY="125.0" text="Arxiu:" />
             <TextField fx:id="arxiu" layoutX="262.0" layoutY="123.0" />
             <Label layoutX="174.0" layoutY="160.0" text="Clau privada:" />
@@ -22,14 +25,14 @@
             <TextField fx:id="desti" layoutX="263.0" layoutY="224.0" />
          </children>
       </Pane>
-      <Pane prefHeight="58.0" prefWidth="600.0" style="-fx-border-width: 2px; -fx-border-color: #595959;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane prefHeight="58.0" prefWidth="600.0" style="-fx-border-width: 2px; -fx-border-color: #595959; -fx-background-color: GREY;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="70.0" layoutY="21.0" text="Eina d'encriptació">
+            <Label layoutX="237.0" layoutY="22.0" text="Eina Desencriptació">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="returnb" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="45.0" text="&lt;-" />
+            <Button fx:id="returnb" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="45.0" text="&lt;" textAlignment="CENTER" />
          </children>
       </Pane>
    </children>

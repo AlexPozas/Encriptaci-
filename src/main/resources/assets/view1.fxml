@@ -7,11 +7,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.Controller1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.Controller1">
    <children>
       <Pane prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Button fx:id="encript" layoutX="213.0" layoutY="272.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="175.0" text="Encriptar" AnchorPane.leftAnchor="213.0" AnchorPane.rightAnchor="212.0" AnchorPane.topAnchor="272.0" />
+            <Button fx:id="encript" layoutX="209.0" layoutY="266.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="181.0" text="Encriptar" AnchorPane.leftAnchor="209.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="266.0">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
             <Label layoutX="175.0" layoutY="125.0" text="Clau pública:" />
             <TextField fx:id="claup" layoutX="262.0" layoutY="123.0" />
             <Label layoutX="216.0" layoutY="160.0" text="Axiu:" />
@@ -20,14 +23,14 @@
             <TextField fx:id="desti" layoutX="262.0" layoutY="191.0" />
          </children>
       </Pane>
-      <Pane prefHeight="58.0" prefWidth="600.0" style="-fx-border-width: 2px; -fx-border-color: #595959;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane prefHeight="58.0" prefWidth="600.0" style="-fx-border-width: 2px; -fx-border-color: #595959; -fx-background-color: GREY;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="70.0" layoutY="21.0" text="Eina d'encriptació">
+            <Label layoutX="237.0" layoutY="22.0" text="Eina d'Encriptació" textAlignment="CENTER">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="returnb" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="45.0" text="&lt;-" />
+            <Button fx:id="returnb" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="45.0" text="&lt;" />
          </children>
       </Pane>
    </children>
